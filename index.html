@@ -282,6 +282,18 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
 <section id="projects">
   <h2 class="section-title">Academic Projects</h2>
   <p class="section-sub">Research and academic projects with clear goals, methods, and outcomes.</p>
+  <style>
+    .proj-bullets{list-style:none;margin:0.5rem 0 0.75rem;display:flex;flex-direction:column;gap:0.35rem}
+    .proj-bullets li{font-size:0.835rem;color:#555;padding-left:1.1rem;position:relative;line-height:1.6}
+    .proj-bullets li::before{content:'→';position:absolute;left:0;color:#aaa}
+    .proj-bullets li strong{color:#111;font-weight:500}
+    .proj-imgs{display:flex;gap:0.5rem;margin:0.75rem 0;flex-wrap:wrap}
+    .proj-imgs img{border-radius:6px;border:1px solid #ebebeb;object-fit:cover}
+    .proj-imgs.one img{width:100%;max-height:160px}
+    .proj-imgs.two img{width:calc(50% - 0.25rem);max-height:130px}
+    .proj-imgs.three img{width:calc(33% - 0.35rem);max-height:110px}
+    .proj-imgs.four img{width:calc(50% - 0.25rem);max-height:110px}
+  </style>
   <div class="projects-grid">
 
     <div class="proj-card">
@@ -290,7 +302,12 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
         <span class="proj-title">Los Angeles Crime Detection</span>
       </div>
       <p class="proj-org">ML &amp; Predictive Analytics &bull; UIUC</p>
-      <p class="proj-desc">Engineered hybrid ML models on 1M+ LAPD crime records to classify high-risk zones and forecast monthly crime volumes. Deployed real-time and batch predictions via SageMaker with fairness-aware preprocessing to reduce demographic bias.</p>
+      <div class="proj-imgs one"><img src="crime-pred.png" alt="Crime prediction models"></div>
+      <ul class="proj-bullets">
+        <li>Engineered hybrid ML models on <strong>1M+ LAPD crime records</strong> to classify high-risk zones and forecast monthly crime volumes using Random Forest and SARIMAX.</li>
+        <li>Optimized XGBoost using cross-validation and grid search — <strong>92% accuracy, 0.79 AUC, 31 MAE</strong>; identified key features (victim age, time-of-day, location).</li>
+        <li>Deployed real-time and batch predictions via <strong>SageMaker + S3</strong>; reduced demographic bias by 18% through fairness-aware preprocessing.</li>
+      </ul>
       <div class="proj-metrics">
         <span class="proj-metric">92% Accuracy</span><span class="proj-metric">0.79 AUC</span><span class="proj-metric">31 MAE</span><span class="proj-metric">−18% Bias</span>
       </div>
@@ -303,7 +320,12 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
         <span class="proj-title">Diabetic Patient Readmission Prediction</span>
       </div>
       <p class="proj-org">Methods of Data Science &bull; UIUC</p>
-      <p class="proj-desc">Predicted 30-day hospital readmissions for 101,766 diabetic patients across 130 US hospitals using XGBoost, Logistic Regression, Random Forest, and SVM. Applied L1-based feature selection, SMOTE for class imbalance, and fairness analysis across race and gender subgroups.</p>
+      <div class="proj-imgs one"><img src="diabetic-roc.png" alt="XGBoost ROC and model comparison charts"></div>
+      <ul class="proj-bullets">
+        <li>Predicted 30-day readmissions for <strong>101,766 diabetic patients</strong> across 130 US hospitals using XGBoost, Logistic Regression, Random Forest, and SVM.</li>
+        <li>Applied L1-based feature selection and SMOTE for class imbalance — <strong>XGBoost achieved best ROC-AUC of 0.70</strong> and recall of 0.59.</li>
+        <li>Conducted fairness analysis across race and gender subgroups — <strong>accuracy gap ≤ 0.05</strong>, confirming demographic equity.</li>
+      </ul>
       <div class="proj-metrics">
         <span class="proj-metric">0.70 ROC-AUC</span><span class="proj-metric">~65% Accuracy</span><span class="proj-metric">Fairness Validated</span>
       </div>
@@ -313,10 +335,35 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
     <div class="proj-card">
       <div class="proj-header">
         <span class="proj-code-icon">&lt;&gt;</span>
+        <span class="proj-title">Alumni Membership Growth Model</span>
+      </div>
+      <p class="proj-org">Market Analytics &bull; Data Science &bull; UIUC</p>
+      <div class="proj-imgs two">
+        <img src="alumni-1.png" alt="Alumni lifetime giving regression analysis">
+        <img src="alumni-2.png" alt="Alumni cumulative donation coefficients">
+      </div>
+      <ul class="proj-bullets">
+        <li>Segmented <strong>5+ alumni groups</strong> using chi-square tests — identified mid-career professionals (~74%) as the highest-value conversion segment.</li>
+        <li>Analyzed digital engagement metrics across 3+ channels (email, web, events); applied t-tests and A/B testing to validate incentive structures and funnel drop-offs.</li>
+        <li>Built regression model predicting membership likelihood — <strong>graduation year as strongest predictor (p &lt; 0.001)</strong>; generated post-campaign channel recommendations.</li>
+      </ul>
+      <div class="proj-metrics">
+        <span class="proj-metric">5+ Segments</span><span class="proj-metric">p &lt; 0.001</span><span class="proj-metric">3+ Channels</span>
+      </div>
+      <div class="tags"><span class="tag">Regression</span><span class="tag">A/B Testing</span><span class="tag">Chi-square</span><span class="tag">Market Analytics</span><span class="tag">R</span></div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-header">
+        <span class="proj-code-icon">&lt;&gt;</span>
         <span class="proj-title">MCU Mania — Full-Stack Database App</span>
       </div>
       <p class="proj-org">Database Systems &bull; UIUC</p>
-      <p class="proj-desc">Built end-to-end data pipeline in Python to extract, clean, and load multi-source CSV datasets into a normalized 9-table MySQL relational schema (BCNF). Designed and optimized 4 complex multi-join SQL queries using EXPLAIN ANALYZE, reducing stream result costs by up to 87% through composite index strategies. Deployed a full-stack web app on GCP (CloudSQL + GCP VM) with a React frontend and Python/SQL backend, featuring stored procedures, triggers, and a transaction-based analytics engine.</p>
+      <ul class="proj-bullets">
+        <li>Built end-to-end data pipeline in Python loading multi-source CSVs into a <strong>normalized 9-table MySQL schema (BCNF)</strong>.</li>
+        <li>Designed and optimized 4 complex multi-join SQL queries using EXPLAIN ANALYZE — <strong>reduced stream result costs by up to 87%</strong> through composite index strategies.</li>
+        <li>Deployed full-stack web app on <strong>GCP (CloudSQL + VM)</strong> with React frontend and Python/SQL backend, featuring stored procedures, triggers, and transaction-based analytics.</li>
+      </ul>
       <div class="proj-metrics">
         <span class="proj-metric">87% query cost reduction</span><span class="proj-metric">9-table BCNF schema</span><span class="proj-metric">4 optimized queries</span>
       </div>
@@ -326,23 +373,14 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
     <div class="proj-card">
       <div class="proj-header">
         <span class="proj-code-icon">&lt;&gt;</span>
-        <span class="proj-title">Stock Market Analysis Dashboard</span>
-      </div>
-      <p class="proj-org">Data Warehousing &amp; BI &bull; UIUC</p>
-      <p class="proj-desc">Built 3 interactive Tableau dashboards analyzing 20+ NYSE/NASDAQ/S&P 500 stocks across automobile, consumer goods, and tech sectors — incorporating candlestick charts, MACD momentum, Bollinger Bands, and volume-price correlation to surface actionable equity market insights. Engineered financial features in Python (daily returns, moving averages, EMA, MACD, relative volatility) via rolling calculations; used Tableau Prep to clean and merge multi-source datasets, uncovering key market events including 2008 crisis volatility spikes and NVIDIA's post-2015 GPU surge.</p>
-      <div class="proj-metrics">
-        <span class="proj-metric">20+ Stocks</span><span class="proj-metric">3 Industries</span><span class="proj-metric">3 Dashboards</span>
-      </div>
-      <div class="tags"><span class="tag">Tableau</span><span class="tag">Tableau Prep</span><span class="tag">Python</span><span class="tag">MACD</span><span class="tag">Bollinger Bands</span><span class="tag">Time Series</span></div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-header">
-        <span class="proj-code-icon">&lt;&gt;</span>
         <span class="proj-title">Lung Cancer Detection via CNN</span>
       </div>
       <p class="proj-org">Computer Vision &bull; University of Mumbai, Final Year</p>
-      <p class="proj-desc">Performed EDA on 50K+ medical images using distribution analysis, correlation heatmaps, and pixel intensity histograms to optimize preprocessing for CNN training. Implemented a CNN with softmax regression in R to classify images as benign vs. malignant, and conducted a comprehensive literature review demonstrating the viability of computer vision for automated cancer detection in pathology.</p>
+      <ul class="proj-bullets">
+        <li>Performed EDA on <strong>50K+ medical images</strong> using distribution analysis, correlation heatmaps, and pixel intensity histograms to optimize CNN preprocessing.</li>
+        <li>Implemented CNN with softmax regression in <strong>R</strong> to classify images as benign vs. malignant — <strong>achieved 89% accuracy</strong> through image segmentation.</li>
+        <li>Conducted comprehensive literature review demonstrating <strong>32% improvement in diagnostic accuracy</strong> leveraging supervised learning for automated cancer detection.</li>
+      </ul>
       <div class="proj-metrics">
         <span class="proj-metric">89% Accuracy</span><span class="proj-metric">+32% Diagnostic Improvement</span><span class="proj-metric">50K+ Images</span>
       </div>
@@ -352,11 +390,42 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
     <div class="proj-card" style="grid-column: 1 / -1;">
       <div class="proj-header">
         <span class="proj-code-icon">&lt;&gt;</span>
+        <span class="proj-title">Stock Market Analysis Dashboard</span>
+      </div>
+      <p class="proj-org">Data Warehousing &amp; Business Intelligence &bull; UIUC</p>
+      <ul class="proj-bullets">
+        <li>Built <strong>3 interactive Tableau dashboards</strong> analyzing 20+ NYSE/NASDAQ/S&P 500 stocks across automobile, consumer goods, and tech sectors — candlestick charts, MACD momentum, Bollinger Bands, and volume-price correlation.</li>
+        <li>Engineered financial features in Python (daily returns, moving averages, EMA, MACD, relative volatility) via rolling calculations; used <strong>Tableau Prep</strong> to clean and merge multi-source datasets.</li>
+        <li>Uncovered key market events including <strong>2008 crisis volatility spikes</strong> and NVIDIA's post-2015 GPU surge; identified inversely proportional volume-price relationship across sectors.</li>
+      </ul>
+      <div class="proj-imgs four">
+        <img src="tableau-prep.png" alt="Tableau Prep pipeline">
+        <img src="stock-tech.png" alt="Tech Giants Dashboard">
+        <img src="stock-consumer.png" alt="Consumer Goods Dashboard">
+        <img src="stock-auto1.png" alt="Automobile Stocks Overview">
+        <img src="stock-auto3.png" alt="Automobile Ticker View">
+      </div>
+      <div class="proj-metrics">
+        <span class="proj-metric">20+ Stocks</span><span class="proj-metric">3 Industries</span><span class="proj-metric">3 Dashboards</span>
+      </div>
+      <div class="tags"><span class="tag">Tableau</span><span class="tag">Tableau Prep</span><span class="tag">Python</span><span class="tag">MACD</span><span class="tag">Bollinger Bands</span><span class="tag">Time Series</span></div>
+    </div>
+
+    <div class="proj-card" style="grid-column: 1 / -1;">
+      <div class="proj-header">
+        <span class="proj-code-icon">&lt;&gt;</span>
         <span class="proj-title">Chicago Food Inspections — Data Visualization &amp; Analysis</span>
         <a href="https://gnm5-oss.github.io/is455-project/projects/chicago-food-inspections/" target="_blank" style="margin-left:auto;font-size:0.75rem;color:var(--green);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:0.3rem;white-space:nowrap"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>
       </div>
       <p class="proj-org">Data Visualization (IS 445) &bull; UIUC &bull; Spring 2026</p>
-      <p class="proj-desc">Analyzed 246,990 Chicago food inspections (2010–2025) to uncover the impact of a July 2018 CDPH regulatory overhaul that collapsed bakery pass rates by 48 percentage points — not a hygiene crisis, but a rulebook change. Identified inspection blind spots: 87% of wholesale food businesses and 90% of shared kitchen licenses had never been inspected, with geographic clustering in underserved West and South Side neighborhoods.</p>
+      <div class="proj-imgs one">
+        <img src="chicago-preview.png" alt="Chicago Food Inspections project preview">
+      </div>
+      <ul class="proj-bullets">
+        <li>Analyzed <strong>246,990 Chicago food inspections (2010–2025)</strong> to uncover impact of a July 2018 CDPH regulatory overhaul — collapsed bakery pass rates by <strong>48 percentage points</strong>, not a hygiene crisis but a rulebook change.</li>
+        <li>Identified inspection blind spots: <strong>87% of wholesale food businesses</strong> and 90% of shared kitchen licenses had never been inspected, with geographic clustering in underserved West and South Side neighborhoods.</li>
+        <li>Built interactive Altair/Vega-Lite visualizations with click-to-filter facility pills, year-range sliders, hover tooltips, and a ZIP code choropleth map surfacing coverage gaps.</li>
+      </ul>
       <div class="proj-metrics">
         <span class="proj-metric">246,990 inspections</span><span class="proj-metric">−48pp pass rate drop</span><span class="proj-metric">87% wholesale uninspected</span><span class="proj-metric">15-year analysis</span>
       </div>
@@ -365,6 +434,7 @@ footer{text-align:center;padding:2rem;font-size:0.78rem;color:#aaa;border-top:1p
 
   </div>
 </section>
+
 
 <!-- EDUCATION -->
 <section id="education">
